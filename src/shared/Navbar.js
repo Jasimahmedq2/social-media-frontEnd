@@ -5,7 +5,7 @@ import { IoMdNotificationsOutline } from 'react-icons/io'
 
 const Navbar = () => {
   return (
-    <div className='drop-shadow-lg'>
+    <div className='drop-shadow-lg sticky top-0 z-10'>
       <div className="navbar bg-base-100">
         <div className="flex-1">
           <p className="btn btn-ghost normal-case text-xl">own-social</p>
