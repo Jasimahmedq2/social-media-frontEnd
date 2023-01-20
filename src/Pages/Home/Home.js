@@ -9,13 +9,17 @@ const Home = () => {
   return (
     <div>
       <Navbar />
-      <div className='flex space-x-6 pt-12'>
+      <div className='flex justify-between'>
         <LeftBar />
-        <RightBar />
         <div className='w-1/2 space-y-12'>
         <CreatePost />
         <Post />
+        <Post />
+        <Post />
+        <Post />
+        <Post />
         </div>
+        <RightBar />
       </div>
 
     </div>

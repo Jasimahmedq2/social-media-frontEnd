@@ -5,7 +5,7 @@ import { BsThreeDotsVertical } from 'react-icons/bs'
 
 const Post = () => {
   return (
-    <div className='py-12'>
+    <div className='pb-6'>
       <div className="card w-full bg-white shadow-xl">
         <div className="">
           <div className="flex items-center space-x-2 p-2 relative rounded-lg">
@@ -20,11 +20,18 @@ const Post = () => {
             </div>
 
             <div className='absolute right-2 top-4'>
-            <BsThreeDotsVertical />
-          </div>
+              <div className="dropdown dropdown-end">
+                <label tabIndex={0} className="hover:cursor-pointer m-1">            <BsThreeDotsVertical />
+                  </label>
+                <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                  <li><a>Item 1</a></li>
+                  <li><a>Item 2</a></li>
+                </ul>
+              </div>
+            </div>
           </div>
 
-  
+
 
           <div className='py-4 px-2'>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla porro quaerat ipsam ullam a doloribus odit rem, reiciendis accusantium, excepturi repudiandae nesciunt similique, quidem quod beatae voluptatibus aut mollitia officiis!</p>

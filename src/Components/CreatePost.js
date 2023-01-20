@@ -6,8 +6,8 @@ import {HiOutlinePhotograph} from 'react-icons/hi'
 
 const CreatePost = () => {
   return (
-    <div>
-      <div className="card w-full'' bg-white shadow-xl">
+    <div className="pt-12">
+      <div className="card w-full bg-white shadow-xl">
         <div className="">
           <div className="flex items-center space-x-2 p-2 rounded-lg">
             <label className="btn  btn-circle avatar">

@@ -1,27 +1,11 @@
 import React from 'react';
-
+import {MdEmojiEvents} from 'react-icons/md'
 const NestedMenu = () => {
   return (
     <div>
-      <ul className="menu bg-base-100 w-full  p-2 rounded-box ">
-        <li><a>Item 1</a></li>
-        <li><a>Item 2</a></li>
-        <li><a>Item 3</a></li>
-        <li><a>Item 1</a></li>
-        <li><a>Item 2</a></li>
-        <li><a>Item 3</a></li>
-        <li><a>Item 1</a></li>
-        <li><a>Item 2</a></li>
-        <li><a>Item 3</a></li>
-        <li><a>Item 1</a></li>
-        <li><a>Item 2</a></li>
-        <li><a>Item 3</a></li>
-        <li><a>Item 1</a></li>
-        <li><a>Item 2</a></li>
-        <li><a>Item 3</a></li>
-        <li><a>Item 1</a></li>
-        <li><a>Item 2</a></li>
-        <li><a>Item 3</a></li>
+      <ul className="menu
+        p-2 rounded-box ">
+        <li className='flex space-x-4'><button className=''><span className='text-xl font-bold'>events</span>  <MdEmojiEvents className='text-4xl text-orange-200'/></button></li>
       </ul>
 
     </div>
