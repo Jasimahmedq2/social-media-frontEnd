@@ -2,3 +2,10 @@ body{
   margin: 0;
   background: #f4f4f4;
 }
+.background-image{
+  opacity: 0;
+}
+.background-container:hover .background-image{
+  transition: 1s ease-in-out;
+  opacity: 1;
+}

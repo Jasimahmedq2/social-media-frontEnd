@@ -2,6 +2,7 @@ import React from 'react';
 import { BsSearch } from 'react-icons/bs'
 import { AiOutlineMessage } from 'react-icons/ai'
 import { IoMdNotificationsOutline } from 'react-icons/io'
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
@@ -31,11 +32,18 @@ const Navbar = () => {
           </div>
 
           <div className="dropdown dropdown-end">
-            <label className="btn btn-ghost btn-circle avatar">
+
+
+            <div className="dropdown dropdown-bottom dropdown-end">
+            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
                 <img src="https://placeimg.com/80/80/people" />
               </div>
             </label>
+              <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 z-10">
+                <li><Link to='/login'>Log In</Link></li>
+              </ul>
+            </div>
 
           </div>
         </div>

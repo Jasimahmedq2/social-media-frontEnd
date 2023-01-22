@@ -50,7 +50,7 @@ const Login = () => {
               {...register("password")}
               className='focus:outline-0 text-2xl px-2 w-full py-2 bg-gray-200'
               type="password"
-              placeholder='write a strong password'
+              placeholder='password'
             />
           </div>
           <p className='text-red-400 text-sm font-bold'>{errors.password?.message}</p>

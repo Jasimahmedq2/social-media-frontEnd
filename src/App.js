@@ -8,6 +8,7 @@ import {
 import Home from './Pages/Home/Home';
 import Singup from './Authentication/Singup';
 import Login from './Authentication/Login';
+import Profile from './Components/Profile';
 
 function App() {
   const router = createBrowserRouter([
@@ -22,7 +23,12 @@ function App() {
     {
       path:"/login",
       element:<Login />
+    },
+    {
+      path:"/profile/:id",
+      element:<Profile />
     }
+
   ])
   return (
     <div className="App">
