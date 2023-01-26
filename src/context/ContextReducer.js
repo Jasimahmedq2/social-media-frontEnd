@@ -1,25 +1,25 @@
 const ReducerContext = (state, action) => {
   switch (action.type) {
-    case "login_start":
+    case "LOGIN_START":
       return {
         user: null,
         isFetching: true,
         error: false
       }
-    case "login_success":
+    case "LOGIN_SUCCESS":
       return {
-        user: state.payload,
+        user: action.payload,
         isFetching: false,
         error: false
       }
-    case "login_failure":
+    case "LOGIN_FAILURE":
       return {
         user: null,
         isFetching: false,
-        error: state.payload
+        error: true
       }
     default:
-      return state
+      return state;
   }
 }
 export default ReducerContext;

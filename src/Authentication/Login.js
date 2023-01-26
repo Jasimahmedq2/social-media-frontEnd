@@ -5,10 +5,12 @@ import { AiOutlineMail } from 'react-icons/ai'
 import { MdOutlinePassword } from 'react-icons/md'
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { loginApiCall } from '../context/LoginApiCall';
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
+import Loader from '../shared/Loader';
+import { ColorRing } from 'react-loader-spinner';
 
 const schema = yup.object().shape({
   email: yup.string().email().required(),
@@ -19,7 +21,8 @@ const Login = () => {
   const { register, formState: { errors }, handleSubmit, reset } = useForm({
     resolver: yupResolver(schema),
   });
-  const { user, isFetching, dispatch } = useContext(AuthContext)
+ const navigate = useNavigate()
+  const { user, isFetching, dispatch, error } = useContext(AuthContext)
 
   const onSubmit = (data) => {
     console.log("user info context", user)
@@ -30,6 +33,24 @@ const Login = () => {
     loginApiCall(userinfo, dispatch)
     reset()
   };
+
+  if(user){
+    navigate('/')
+  }
+  let errorMessage;
+  if(error){
+     errorMessage = <p className='text-red-400 text-sm font-bold'>{error?.message}</p>
+  }
+
+  const loader = <ColorRing
+  visible={true}
+  height="20"
+  width="20"
+  ariaLabel="blocks-loading"
+  wrapperStyle={{}}
+  wrapperClass="blocks-wrapper"
+  colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+/>
 
   return (
     <div className='py-12 h-screen'>
@@ -66,7 +87,9 @@ const Login = () => {
             <p className='text-red-400 text-sm font-bold'>{errors.password?.message}</p>
           </div>
 
-          <input type="submit" value="LogIn" className='btn btn-sm btn-outline absolute right-2 bottom-2' />
+          {errorMessage}
+          
+          <button type="submit" className='btn btn-sm btn-outline absolute right-2 bottom-2'>{isFetching ? loader : 'LOGIN'}</button>
 
         </form>
         <div className='py-12 px-6'>

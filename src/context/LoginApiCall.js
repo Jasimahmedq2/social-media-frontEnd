@@ -1,13 +1,14 @@
 import axios from "axios"
 
 export const loginApiCall = async (userinfo, dispatch) => {
-  dispatch({ type: "login_start" })
+  dispatch({ type: "LOGIN_START" })
   try {
-    const { data } = await axios.post('http://localhost:9000/login', userinfo)
-    console.log("data", data)
-    dispatch({ type: "login_success", payload: data })
+    const {data} = await axios.post('http://localhost:9000/login', userinfo)
+    console.log(data)
+    dispatch({ type: "LOGIN_SUCCESS", payload: data })
 
   } catch (error) {
-    dispatch({ type: "login_failure", payload: error })
+    console.log("error", error)
+    dispatch({ type: "LOGIN_FAILURE", payload: error })
   }
 }

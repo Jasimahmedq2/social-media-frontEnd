@@ -1,14 +1,17 @@
 import React from 'react';
+import { useContext } from 'react';
 import {AiFillFolderAdd} from 'react-icons/ai'
+import { AuthContext } from '../context/AuthContext';
 import CoverPicture from './CoverPicture';
 import PostPhoto from './PostPhoto';
 import ProfilePost from './ProfilePost';
 import ProfileState from './ProfileState';
 
 const Profile = () => {
+ const {user} = useContext(AuthContext)
   return (
     <div className='space-y-12'>
-     <CoverPicture />
+     <CoverPicture user={user}/>
      <ProfileState />
      <div className='flex px-4'>
       <PostPhoto />
