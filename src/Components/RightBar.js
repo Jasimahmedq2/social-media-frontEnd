@@ -1,5 +1,5 @@
 import React from 'react';
-import Suggest from './Friends';
+import Suggest from './Suggest';
 
 const RightBar = () => {
   return (
@@ -10,16 +10,6 @@ const RightBar = () => {
       <div>
         <h3 className='text-sm font-bold py-4 px-2'>suggest</h3>
       </div>
-   <Suggest />
-   <Suggest /> 
-   <Suggest />
-   <Suggest />
-   <Suggest />
-   <Suggest />
-   <Suggest />
-   <Suggest />
-   <Suggest />
-   <Suggest />
    <Suggest />
     </div>
     </div>

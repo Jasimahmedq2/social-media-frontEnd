@@ -10,26 +10,10 @@ const LeftBar = () => {
       <NestedMenu />
       <NestedMenu />
       <NestedMenu />
-      <NestedMenu />
-      <NestedMenu />
-      <NestedMenu />
-      <NestedMenu />
-      <NestedMenu />
-      <NestedMenu />
       <div className="divider"></div> 
       <div>
         <h3 className='text-sm font-bold py-4 px-2'>Friends</h3>
       </div>
-   <Friends />
-   <Friends /> 
-   <Friends />
-   <Friends />
-   <Friends />
-   <Friends />
-   <Friends />
-   <Friends />
-   <Friends />
-   <Friends />
    <Friends />
     </div>
   );
