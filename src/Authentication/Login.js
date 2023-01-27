@@ -11,6 +11,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import Loader from '../shared/Loader';
 import { ColorRing } from 'react-loader-spinner';
+import { useEffect } from 'react';
 
 const schema = yup.object().shape({
   email: yup.string().email().required(),
@@ -30,13 +31,15 @@ const Login = () => {
       email: data.email,
       password: data.password
     }
+
     loginApiCall(userinfo, dispatch)
     reset()
   };
 
   if(user){
-    navigate('/')
+  navigate('/')
   }
+
   let errorMessage;
   if(error){
      errorMessage = <p className='text-red-400 text-sm font-bold'>{error?.message}</p>

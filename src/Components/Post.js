@@ -13,7 +13,7 @@ const Post = () => {
   const { user } = useContext(AuthContext)
   const [userData] = useFriendsData(user?._id) 
  
-  const { isLoading, error, data } = useQuery('timelineData', () => fetch(`http://localhost:9000/api/post/timeline/?userId=${user?._id}`)
+  const { isLoading, error, data, refetch } = useQuery('timelineData', () => fetch(`http://localhost:9000/api/post/timeline/?userId=${user?._id}`)
     .then(res => res.json())
   )
 
@@ -27,12 +27,13 @@ const Post = () => {
   console.log(data, 'from query')
   return (
     <div>
-      <h2>{data.length}</h2>
      {
    data.length > 0 && data.map(post => <PostDetails
       key={post?.userId}
       post={post}
       userData={userData}
+      user={user}
+      refetch={refetch}
       ></PostDetails>)
      }
 

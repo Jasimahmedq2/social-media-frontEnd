@@ -4,7 +4,7 @@ import Suggest from './Suggest';
 const RightBar = () => {
   return (
     <div>
-       <div className='h-screen sticky right-0 top-2 overflow-y-auto bg-base-100 shadow-xl rounded-lg py-4'>
+       <div className='h-screen sticky right-2 top-2 overflow-y-auto bg-base-100 shadow-xl rounded-lg py-4'>
     
       <div className="divider"></div> 
       <div>
