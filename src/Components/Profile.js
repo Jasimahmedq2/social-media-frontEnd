@@ -10,15 +10,15 @@ import ProfileState from './ProfileState';
 
 const Profile = () => {
  const {user} = useContext(AuthContext)
- const id = useLoaderData()
- console.log("id", id)
-  return (
+ const currentUser = useLoaderData()
+
+ return (
     <div className='space-y-12'>
-     <CoverPicture user={user}/>
+     <CoverPicture currentUser={currentUser}/>
      <ProfileState />
      <div className='flex px-4'>
-      <PostPhoto />
-      <ProfilePost />
+      <PostPhoto currentUser={currentUser} />
+      <ProfilePost currentUser={currentUser}/>
      </div>
     </div>
   );

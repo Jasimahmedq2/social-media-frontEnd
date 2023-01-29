@@ -8,9 +8,8 @@ import { format } from 'timeago.js';
 
 const PostDetails = ({ post, userData, user, refetch }) => {
   const [liked, setLiked] = useState(post?.like?.length)
-  console.log('liked', liked)
   const [isLike, setIsLike] = useState(false)
-  const userInfo = userData.length > 0 && userData?.find(user => user?._id === post?.userId)
+  const userInfo = userData?.length > 0 && userData?.find(user => user?._id === post?.userId)
 
   useEffect(() => {
     setIsLike(post.like.includes(user._id));
@@ -22,11 +21,10 @@ const PostDetails = ({ post, userData, user, refetch }) => {
     } catch (error) {
       console.log(error)
     }
-    setLiked(isLike ? liked - 1 : liked + 1)
+    setLiked(isLike ? (pre) => pre - 1 : (pre) => pre + 1)
     setIsLike(!isLike)
     refetch()
   }
-
   return (
     <div className='pb-6'>
       <div className="card w-full bg-white shadow-xl">
@@ -66,9 +64,11 @@ const PostDetails = ({ post, userData, user, refetch }) => {
           <div className='flex justify-end items-center px-4 py-2 space-x-4'>
             <div className='flex'>
               <p>
-                <AiFillHeart
+              <AiFillHeart
                   onClick={handleLikeDislike}
-                  className='sm:text-4xl text-2xl hover:cursor-pointer text-red-300' /></p>
+                  className='sm:text-4xl text-2xl hover:cursor-pointer text-red-300' />
+                </p>
+  
               <span>{liked}</span>
             </div>
             <h4 className='flex '><AiOutlineComment className='sm:text-4xl text-2xl ' /> <span>10</span></h4>

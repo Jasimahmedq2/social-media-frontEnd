@@ -24,12 +24,11 @@ const Post = () => {
   if (isLoading) {
     return <Loader />
   }
-  console.log(data, 'from query')
   return (
     <div>
      {
-   data.length > 0 && data.map(post => <PostDetails
-      key={post?.userId}
+   data?.length > 0 && data.map(post => <PostDetails
+      key={post?._id}
       post={post}
       userData={userData}
       user={user}
