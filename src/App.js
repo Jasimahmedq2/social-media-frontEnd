@@ -12,6 +12,9 @@ import Profile from './Components/Profile';
 import { useContext } from 'react';
 import { AuthContext } from './context/AuthContext';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function App() {
 
   const router = createBrowserRouter([
@@ -39,6 +42,7 @@ function App() {
   return (
     <div className="App">
       <RouterProvider router={router} />
+      <ToastContainer />
     </div>
   );
 }

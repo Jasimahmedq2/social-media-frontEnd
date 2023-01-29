@@ -8,17 +8,17 @@ import { AuthContext } from '../context/AuthContext';
 const Suggest = () => {
   const { user } = useContext(AuthContext)
   const [suggested, setSuggested] = useState([])
-  const defaultSuggest = suggested.filter(suggest => suggest.city !== "" || suggest.from !== "")
-  setSuggested(defaultSuggest)
 
   const suggestedUser = async () => {
     const { data } = await axios.get(`http://localhost:9000/api/user/currentUser/${user?._id}`)
     setSuggested(data)
   }
   
-  console.log("suggested data")
+  const defaultSuggest = suggested.filter(suggest => suggest.city !== "" || suggest.from !== "")
+
   useEffect(() => {
     suggestedUser()
+    setSuggested(defaultSuggest)
   }, [])
 
   return (

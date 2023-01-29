@@ -1,5 +1,6 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { Children, useEffect, useState } from 'react';
+import { createContext } from 'react';
 import { useContext } from 'react';
 
 import { useQuery } from 'react-query';
@@ -7,6 +8,7 @@ import { AuthContext } from '../context/AuthContext';
 import useFriendsData from '../Hooks/useFriendsData';
 import Loader from '../shared/Loader';
 import PostDetails from './PostDetails';
+import ReFetchContainer from './ReFetchContainer';
 
 
 const Post = () => {
@@ -26,6 +28,9 @@ const Post = () => {
   }
   return (
     <div>
+      <ReFetchContainer refetch={refetch}/>
+
+      
      {
    data?.length > 0 && data.map(post => <PostDetails
       key={post?._id}

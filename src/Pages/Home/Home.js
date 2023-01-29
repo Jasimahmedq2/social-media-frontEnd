@@ -5,6 +5,7 @@ import LeftBar from '../../Components/LeftBar';
 import Post from '../../Components/Post';
 import RightBar from '../../Components/RightBar';
 import Navbar from '../../shared/Navbar';
+import ReFetchContainer from '../../Components/ReFetchContainer';
 
 const Home = () => {
   return (
@@ -15,7 +16,9 @@ const Home = () => {
           <LeftBar />
         </div>
         <div className='w-1/2 space-y-12'>
-          <CreatePost />
+          <ReFetchContainer>
+            <CreatePost />
+          </ReFetchContainer>
           <Post />
         </div>
         <div className='w-1/5'>
