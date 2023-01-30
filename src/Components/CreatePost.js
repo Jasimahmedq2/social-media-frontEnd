@@ -10,17 +10,17 @@ import { AuthContext } from '../context/AuthContext';
 import { toast } from 'react-toastify';
 import { useState } from 'react';
 import { ColorRing } from 'react-loader-spinner';
-import { refetchContext } from './ReFetchContainer';
+import useTimeLineData from '../Hooks/useTimeLineData';
+import { Link } from 'react-router-dom';
 
 const schema = yup.object().shape({
   description: yup.string().max(500),
 });
 
 const CreatePost = () => {
-  const refetch  = useContext(refetchContext)
-  console.log("refetch", refetch)
   const [Loading, setLoading] = useState(false)
   const { user } = useContext(AuthContext)
+  const { data, refetch } = useTimeLineData(user?._id)
   const { register, formState: { errors }, handleSubmit, reset } = useForm({
     resolver: yupResolver(schema),
   });
@@ -31,6 +31,7 @@ const CreatePost = () => {
     const privateUrl = '44c26384eae4023f6064cf342eee9294'
     const formData = new FormData()
     formData.append('image', img)
+
     fetch(`https://api.imgbb.com/1/upload?key=${privateUrl}`, {
       method: 'POST',
       body: formData
@@ -40,8 +41,8 @@ const CreatePost = () => {
 
         const postInfo = {
           userId: user?._id,
-          description: data?.description,
-          img: result?.data.url
+          description: data?.description || "",
+          img: result?.data?.url || ""
         }
 
         fetch('http://localhost:9000/api/post/', {
@@ -52,9 +53,9 @@ const CreatePost = () => {
           body: JSON.stringify(postInfo)
         })
           .then(res => res.json())
-
+        refetch()
         setLoading(false)
-        toast.success('🦄 Wow so easy!', {
+        toast.success(`hey  ${user?.username} your post created successfully`, {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
@@ -65,6 +66,7 @@ const CreatePost = () => {
         })
       })
     reset()
+
   }
   const loader = <ColorRing
     visible={true}
@@ -80,13 +82,17 @@ const CreatePost = () => {
     <div className="pt-12">
       <div className="card w-full bg-white shadow-xl">
         <div className="">
-          <div className="flex items-center space-x-2 p-2 rounded-lg">
-            <label className="btn  btn-circle avatar">
-              <div className="w-10 rounded-full">
-                <img src="https://placeimg.com/80/80/people" />
-              </div>
-            </label>
+
+          <div style={{marginTop: '-2rem'}} className="flex justify-center  items-center space-x-2 p-2 rounded-lg">
+            <Link to={`/profile/${user?._id}`}>
+              <label className="btn  btn-circle avatar">
+                <div className="w-12 rounded-full">
+                  <img src={user?.img} alt="user img" />
+                </div>
+              </label>
+            </Link>
           </div>
+
         </div>
         <form onSubmit={handleSubmit(uploadPost)} className="relative">
 
@@ -104,20 +110,18 @@ const CreatePost = () => {
               <label>
                 <input
                   type="file"
-                  required
                   {...register("img")}
                   className='hidden'
                 />
-                <span className='text-4xl hover:cursor-pointer'><HiOutlinePhotograph /></span>
+                <span className='text-4xl hover:cursor-pointer'><HiOutlinePhotograph className='text-blue-400'/></span>
               </label>
 
             </div>
             <span className='text-4xl'><CiLocationOn /></span>
             <span className='text-4xl'><AiFillTag /></span>
           </div>
-          <button 
-          onClick={refetch}
-          className='btn btn-outline absolute left-0 right-0 bottom-0' type="submit">{Loading ? loader : "post"}</button>
+          <button
+            className='btn btn-accent text-2xl absolute left-0 right-0 bottom-0' type="submit">{Loading ? loader : "post"}</button>
         </form>
 
       </div>

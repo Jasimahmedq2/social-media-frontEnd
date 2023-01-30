@@ -3,22 +3,17 @@ import React, { Children, useEffect, useState } from 'react';
 import { createContext } from 'react';
 import { useContext } from 'react';
 
-import { useQuery } from 'react-query';
 import { AuthContext } from '../context/AuthContext';
 import useFriendsData from '../Hooks/useFriendsData';
+import useTimeLineData from '../Hooks/useTimeLineData';
 import Loader from '../shared/Loader';
 import PostDetails from './PostDetails';
-import ReFetchContainer from './ReFetchContainer';
 
 
 const Post = () => {
   const { user } = useContext(AuthContext)
-  const [userData] = useFriendsData(user?._id) 
- 
-  const { isLoading, error, data, refetch } = useQuery('timelineData', () => fetch(`http://localhost:9000/api/post/timeline/?userId=${user?._id}`)
-    .then(res => res.json())
-  )
-
+  const [userData] = useFriendsData(user?._id)
+  const {data, refetch, isLoading, error} = useTimeLineData(user?._id)
 
   if (error) {
     console.log("error", error)
@@ -28,18 +23,16 @@ const Post = () => {
   }
   return (
     <div>
-      <ReFetchContainer refetch={refetch}/>
 
-      
-     {
-   data?.length > 0 && data.map(post => <PostDetails
-      key={post?._id}
-      post={post}
-      userData={userData}
-      user={user}
-      refetch={refetch}
-      ></PostDetails>)
-     }
+      {
+        data?.length > 0 && data.map(post => <PostDetails
+          key={post?._id}
+          post={post}
+          userData={userData}
+          user={user}
+          refetch={refetch}
+        ></PostDetails>)
+      }
 
     </div>
   );
