@@ -10,7 +10,7 @@ const Suggest = () => {
   const [suggested, setSuggested] = useState([])
 
   const suggestedUser = async () => {
-    const { data } = await axios.get(`http://localhost:9000/api/user/currentUser/${user?._id}`)
+    const { data } = await axios.get(`https://own-social.onrender.com/api/user/currentUser/${user?._id}`)
     setSuggested(data)
   }
   

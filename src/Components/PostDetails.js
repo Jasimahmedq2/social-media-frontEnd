@@ -20,7 +20,7 @@ const PostDetails = ({ post, userData, user, refetch }) => {
 
   const handleLikeDislike = () => {
     try {
-      axios.put(`http://localhost:9000/api/post/${post?._id}/like`, { userId: post._id })
+      axios.put(`https://own-social.onrender.com/api/post/${post?._id}/like`, { userId: post._id })
     } catch (error) {
       console.log(error)
     }

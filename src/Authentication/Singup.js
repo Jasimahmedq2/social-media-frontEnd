@@ -33,7 +33,7 @@ const Singup = () => {
     }
 
     try {
-      await axios.post('http://localhost:9000/signup', userInfo)
+      await axios.post('https://own-social.onrender.com/signup', userInfo)
       navigate('/login')
     } catch (error) {
       console.log('error', error.message)

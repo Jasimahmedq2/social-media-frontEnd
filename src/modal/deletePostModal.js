@@ -8,7 +8,7 @@ const DeletePostModal = ({ deletePostModal, setDeletePostModal, refetch, user })
 
     try {
 
-      const response = await axios.delete(`http://localhost:9000/api/post/${id}?userId=${user._id}`)
+      const response = await axios.delete(`https://own-social.onrender.com/api/post/${id}?userId=${user._id}`)
       console.log("response", response.status)
       setDeletePostModal(null)
 

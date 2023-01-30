@@ -5,7 +5,7 @@ const useFriendsData = (id) => {
   const [userData, setUserData] = useState([])
 
   const loadUserData = async () => {
-    const { data } = await axios.get(`http://localhost:9000/api/user/userProfile/?userId=${id}`)
+    const { data } = await axios.get(`https://own-social.onrender.com/api/user/userProfile/?userId=${id}`)
     setUserData(data)
   }
 

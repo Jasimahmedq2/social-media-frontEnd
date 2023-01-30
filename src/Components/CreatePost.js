@@ -45,7 +45,7 @@ const CreatePost = () => {
           img: result?.data?.url || ""
         }
 
-        fetch('http://localhost:9000/api/post/', {
+        fetch('https://own-social.onrender.com/api/post/', {
           method: 'post',
           headers: {
             "content-type": "application/json"

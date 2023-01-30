@@ -33,7 +33,7 @@ function App() {
     {
       path: "/profile/:id",
       loader: async ({ params }) => {
-        return await fetch(`http://localhost:9000/api/user/${params.id}`)
+        return await fetch(`https://own-social.onrender.com/api/user/${params.id}`)
       },
       element: <Profile />
     }
