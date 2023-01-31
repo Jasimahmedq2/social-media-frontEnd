@@ -7,6 +7,7 @@ import { AiFillHeart } from 'react-icons/ai'
 import { format } from 'timeago.js';
 import { Link } from 'react-router-dom';
 import DeletePostModal from '../modal/deletePostModal';
+import UpdatePostModal from '../modal/UpdatePostModal';
 
 const PostDetails = ({ post, userData, user, refetch }) => {
   const [deletePostModal, setDeletePostModal] = useState(null)
@@ -93,7 +94,7 @@ const PostDetails = ({ post, userData, user, refetch }) => {
         </div>
       </div>
       {
-        deletePostModal && <DeletePostModal
+        deletePostModal && <deletePostModal
           deletePostModal={deletePostModal}
           setDeletePostModal={setDeletePostModal}
           user={user}

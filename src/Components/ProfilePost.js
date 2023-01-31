@@ -1,13 +1,22 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { AiOutlineComment, AiOutlineHeart } from 'react-icons/ai';
+import { AiFillEdit, AiOutlineComment, AiOutlineHeart, AiTwotoneDelete } from 'react-icons/ai';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { format } from 'timeago.js';
+import { AuthContext } from '../context/AuthContext';
+import useTimeLineData from '../Hooks/useTimeLineData';
 import useUserPost from '../Hooks/useUserPost';
+import DeletePostModal from '../modal/deletePostModal';
+import UpdatePostModal from '../modal/UpdatePostModal';
 
 const ProfilePost = ({ currentUser }) => {
+  const { user } = useContext(AuthContext)
+  const { refetch } = useTimeLineData(user._id)
+  const [deletePostModal, setDeletePostModal] = useState(null)
+  const [updatePostModal, setUpdatePostModal] = useState(null)
+
   const [userPost] = useUserPost(currentUser?._id)
 
 
@@ -17,28 +26,42 @@ const ProfilePost = ({ currentUser }) => {
         userPost?.map(userPost => {
           const { description, img, createdAt, } = userPost;
           return (
-            <div className='pb-6 w-full'>
-              <div className="card w-full bg-white shadow-xl">
-                <div className="">
-                  <div className="flex items-center space-x-2 p-2 relative rounded-lg">
-                    <label className="btn  btn-circle avatar">
-                      <div className="w-10 rounded-full">
-                        <img src="https://placeimg.com/80/80/people" />
+            <div>
+              <div className='pb-6 w-full'>
+                <div className="card w-full bg-white shadow-xl">
+                  <div className="">
+                    <div className="flex items-center space-x-2 p-2 relative rounded-lg">
+                      <label className="btn  btn-circle avatar">
+                        <div className="w-10 rounded-full">
+                          <img src="https://placeimg.com/80/80/people" />
+                        </div>
+                      </label>
+                      <div>
+                        <h3 className='text-sm font-bold'>{currentUser?.username}</h3>
+                        <p className='font'>{format(createdAt)}</p>
                       </div>
-                    </label>
-                    <div>
-                      <h3 className='text-sm font-bold'>{currentUser?.username}</h3>
-                      <p className='font'>{format(createdAt)}</p>
-                    </div>
 
-                    <div className='absolute right-2 top-4'>
-                      <div className="dropdown dropdown-end">
-                        <label tabIndex={0} className="hover:cursor-pointer m-1">            <BsThreeDotsVertical />
-                        </label>
-                        <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-                          <li><a>Item 1</a></li>
-                          <li><a>Item 2</a></li>
-                        </ul>
+                      <div className='absolute right-2 top-4'>
+                        <div className="dropdown dropdown-end">
+                          <label tabIndex={0} className="hover:cursor-pointer m-1">            <BsThreeDotsVertical />
+                          </label>
+                          <div tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                            <label
+                              onClick={() => setDeletePostModal(userPost)}
+                              htmlFor="delete-post-modal"
+                              className='flex items-center p-2 space-x-2 hover:cursor-pointer hover:bg-base-300 rounded'>
+                              <AiTwotoneDelete className='sm:text-4xl text-red-300 ' /> <span>delete</span>
+                            </label>
+
+
+                            <label
+                              onClick={() => setUpdatePostModal(userPost)}
+                              htmlFor="update-post-modal"
+                              className='flex items-center p-2 space-x-2 hover:cursor-pointer hover:bg-base-300 rounded'>
+                              <AiFillEdit className='sm:text-4xl text-blue-300 ' /> <span>edit</span>
+                            </label>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -62,7 +85,23 @@ const ProfilePost = ({ currentUser }) => {
           )
         })
       }
-    </div>
+      {
+        deletePostModal && <DeletePostModal
+          deletePostModal={deletePostModal}
+          setDeletePostModal={setDeletePostModal}
+          user={user}
+          refetch={refetch}
+        />
+      }
+      {
+        updatePostModal && <UpdatePostModal
+          updatePostModal={updatePostModal}
+          setUpdatePostModal={setUpdatePostModal}
+          user={user}
+          refetch={refetch}
+        />
+      }
+    </div >
   );
 };
 

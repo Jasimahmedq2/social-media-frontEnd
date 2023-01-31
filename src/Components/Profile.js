@@ -9,7 +9,6 @@ import ProfilePost from './ProfilePost';
 import ProfileState from './ProfileState';
 
 const Profile = () => {
- const {user} = useContext(AuthContext)
  const currentUser = useLoaderData()
 
  return (

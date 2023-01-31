@@ -3,7 +3,7 @@ import React from 'react';
 import { toast } from 'react-toastify';
 
 const DeletePostModal = ({ deletePostModal, setDeletePostModal, refetch, user }) => {
-
+console.log("refetch", refetch)
   const handleDeletePost = async (id) => {
 
     try {
