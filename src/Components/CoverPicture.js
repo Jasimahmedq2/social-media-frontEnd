@@ -1,7 +1,34 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useContext } from 'react';
+import { useState } from 'react';
 import { AiFillFolderAdd } from 'react-icons/ai';
+import { RiUserFollowFill } from 'react-icons/ri'
+import { AuthContext } from '../context/AuthContext';
 
 const CoverPicture = ({ currentUser }) => {
+  const { user, dispatch } = useContext(AuthContext)
+  console.log("currentUser", currentUser)
+  const [isFollowed, setFollowed] = useState(user?.followings?.includes(currentUser._id))
+  console.log("isFollowed", isFollowed)
+  const handleFollowUnfollow = async () => {
+    try {
+      if (isFollowed) {
+        await axios.put(`http://localhost:9000/api/user/${currentUser?._id}/unfollowed`, { userId: user._id });
+        dispatch({ type: "UNFOLLOW", payload: currentUser._id })
+
+
+      } else {
+        await axios.put(`http://localhost:9000/api/user/${currentUser?._id}/following`, { userId: user?._id });
+
+        dispatch({ type: "FOLLOW", payload: currentUser._id })
+      }
+
+      setFollowed(!isFollowed)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <div>
       <div className='relative background-container'>
@@ -23,7 +50,7 @@ const CoverPicture = ({ currentUser }) => {
 
               <label className=" rounded-md cursor-pointer text-white absolute right-0 top-0  z-20">
                 <input type="file" className="hidden" />
-                <span><AiFillFolderAdd className='text-4xl text-secondary'/></span>
+                <span><AiFillFolderAdd className='text-4xl text-secondary' /></span>
               </label>
 
 
@@ -33,7 +60,16 @@ const CoverPicture = ({ currentUser }) => {
 
 
           <div className='w-1/2 mx-auto space-y-4'>
-            <h3 className='text-xl font-bold'>{currentUser?.username}</h3>
+
+            <div className='flex justify-between items-center'>
+              <h3 className='text-xl font-bold'>{currentUser?.username}</h3>
+              {
+                currentUser._id !== user._id && (
+                  <h4 onClick={handleFollowUnfollow} className='flex items-center bg-blue-500 text-white font-bold rounded border border-white p-1 hover:cursor-pointer'>{isFollowed ? "unFollow" : "follow"}<RiUserFollowFill /></h4>
+                )
+              }
+
+            </div>
             <p className='text-sm'>write title something your self</p>
           </div>
         </div>

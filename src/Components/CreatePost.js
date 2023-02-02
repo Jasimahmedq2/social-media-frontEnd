@@ -19,11 +19,13 @@ const schema = yup.object().shape({
 
 const CreatePost = () => {
   const [Loading, setLoading] = useState(false)
+
   const { user } = useContext(AuthContext)
   const { data, refetch } = useTimeLineData(user?._id)
   const { register, formState: { errors }, handleSubmit, reset } = useForm({
     resolver: yupResolver(schema),
   });
+
 
   const uploadPost = (data) => {
     setLoading(true)
@@ -83,7 +85,7 @@ const CreatePost = () => {
       <div className="card w-full bg-white shadow-xl">
         <div className="">
 
-          <div style={{marginTop: '-2rem'}} className="flex justify-center  items-center space-x-2 p-2 rounded-lg">
+          <div style={{ marginTop: '-2rem' }} className="flex justify-center  items-center space-x-2 p-2 rounded-lg">
             <Link to={`/profile/${user?._id}`}>
               <label className="btn  btn-circle avatar">
                 <div className="w-12 rounded-full">
@@ -113,8 +115,9 @@ const CreatePost = () => {
                   {...register("img")}
                   className='hidden'
                 />
-                <span className='text-4xl hover:cursor-pointer'><HiOutlinePhotograph className='text-blue-400'/></span>
+                <span className='text-4xl hover:cursor-pointer'><HiOutlinePhotograph className='text-blue-400' /></span>
               </label>
+
 
             </div>
             <span className='text-4xl'><CiLocationOn /></span>

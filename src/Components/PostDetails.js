@@ -38,7 +38,7 @@ const PostDetails = ({ post, userData, user, refetch }) => {
               <Link to={`/profile/${userInfo?._id}`}>
               <label className="btn  btn-circle avatar">
                 <div className="w-10 rounded-full">
-                  <img src={userInfo?.img} />
+                  <img src={userInfo?.img} alt="user img"/>
                 </div>
               </label>
               </Link>
@@ -94,7 +94,7 @@ const PostDetails = ({ post, userData, user, refetch }) => {
         </div>
       </div>
       {
-        deletePostModal && <deletePostModal
+        deletePostModal && <DeletePostModal
           deletePostModal={deletePostModal}
           setDeletePostModal={setDeletePostModal}
           user={user}

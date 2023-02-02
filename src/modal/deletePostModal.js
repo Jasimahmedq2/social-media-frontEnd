@@ -3,16 +3,17 @@ import React from 'react';
 import { toast } from 'react-toastify';
 
 const DeletePostModal = ({ deletePostModal, setDeletePostModal, refetch, user }) => {
-console.log("refetch", refetch)
+  console.log("refetch", refetch)
   const handleDeletePost = async (id) => {
 
     try {
 
       const response = await axios.delete(`https://own-social.onrender.com/api/post/${id}?userId=${user._id}`)
       console.log("response", response.status)
+      refetch()
       setDeletePostModal(null)
 
-      if(response.status === 200){
+      if (response.status === 200) {
         toast.success('successfully deleted the post', {
           position: "top-center",
           autoClose: 5000,
@@ -22,9 +23,8 @@ console.log("refetch", refetch)
           draggable: true,
           progress: undefined,
         })
-      
+
       }
-      refetch()
 
     } catch (error) {
       console.log(error)

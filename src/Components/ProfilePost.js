@@ -26,7 +26,7 @@ const ProfilePost = ({ currentUser }) => {
         userPost?.map(userPost => {
           const { description, img, createdAt, } = userPost;
           return (
-            <div>
+            <div key={userPost._id}>
               <div className='pb-6 w-full'>
                 <div className="card w-full bg-white shadow-xl">
                   <div className="">

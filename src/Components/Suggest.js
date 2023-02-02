@@ -26,7 +26,7 @@ const Suggest = () => {
       {
         suggested?.map(suggest => {
           return (
-            <Link to={`/profile/${suggest?._id}`}>
+            <Link to={`/profile/${suggest?._id}`} key={suggest._id}>
               <div className="flex items-center space-x-4 py-2 px-4 rounded-lg">
                 <label className="btn  btn-circle avatar">
                   <div className="w-10 rounded-full">

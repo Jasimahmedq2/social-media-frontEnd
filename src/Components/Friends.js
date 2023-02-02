@@ -12,7 +12,7 @@ const Friends = () => {
       {
         userData?.length > 0 && userData.map(userInfo => {
           return (
-            <Link to={`profile/${userInfo?._id}`}>
+            <Link to={`profile/${userInfo?._id}`} key={userInfo._id}>
               <div className="flex items-center space-x-4 py-2 px-4 rounded-lg">
                 <label className="btn  btn-circle avatar">
                   <div className="w-10 rounded-full">
