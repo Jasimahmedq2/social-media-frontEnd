@@ -1,6 +1,4 @@
-import { yupResolver } from '@hookform/resolvers/yup';
 import React from 'react';
-import * as yup from "yup";
 import { useForm } from 'react-hook-form';
 import { AiFillTag } from 'react-icons/ai'
 import { CiLocationOn } from 'react-icons/ci'
@@ -13,26 +11,22 @@ import { ColorRing } from 'react-loader-spinner';
 import useTimeLineData from '../Hooks/useTimeLineData';
 import { Link } from 'react-router-dom';
 
-const schema = yup.object().shape({
-  description: yup.string().max(500),
-});
 
 const CreatePost = () => {
   const [Loading, setLoading] = useState(false)
-
+  const [preview, setPreview] = useState(null)
   const { user } = useContext(AuthContext)
-  const { data, refetch } = useTimeLineData(user?._id)
-  const { register, formState: { errors }, handleSubmit, reset } = useForm({
-    resolver: yupResolver(schema),
-  });
+  const { refetch } = useTimeLineData(user?._id)
+  const { register, handleSubmit, reset } = useForm();
 
 
-  const uploadPost = (data) => {
+  const onsubmit = (data) => {
+    console.log("data image", data
+    )
     setLoading(true)
-    const img = data?.img[0]
     const privateUrl = '44c26384eae4023f6064cf342eee9294'
     const formData = new FormData()
-    formData.append('image', img)
+    formData.append("image", data?.image[0])
 
     fetch(`https://api.imgbb.com/1/upload?key=${privateUrl}`, {
       method: 'POST',
@@ -40,7 +34,7 @@ const CreatePost = () => {
     })
       .then(res => res.json())
       .then(result => {
-
+        console.log("result", result)
         const postInfo = {
           userId: user?._id,
           description: data?.description || "",
@@ -67,9 +61,12 @@ const CreatePost = () => {
           progress: undefined,
         })
       })
+    setPreview(null)
     reset()
 
   }
+
+
   const loader = <ColorRing
     visible={true}
     height="30"
@@ -96,24 +93,29 @@ const CreatePost = () => {
           </div>
 
         </div>
-        <form onSubmit={handleSubmit(uploadPost)} className="relative">
+        <form onSubmit={handleSubmit(onsubmit)} className="relative">
 
           <textarea
+            type="text"
             {...register("description")}
-            type="text" placeholder="what's on your mind, jasim" className="focus:outline-0 w-full p-6 resize-none" />
-
-          <p className='text-red-400 text-sm'>{errors?.description?.message}</p>
+            placeholder="what's on your mind, jasim" className="focus:outline-0 w-full p-6 resize-none" />
 
           <div className="divider"></div>
-
+          {
+            preview && <div className='w-11/12 mx-auto  p-2'>
+              <img className='w-full h-64 rounded shadow' src={preview} alt="preview img" />
+            </div>
+          }
           <div className='flex justify-center pb-16 space-x-6 '>
             <div>
 
               <label>
                 <input
                   type="file"
-                  {...register("img")}
-                  className='hidden'
+                  {...register("image", {
+                    onChange: (e) => { setPreview(URL.createObjectURL(e.target.files[0])) }
+                  })}
+                  className="hidden"
                 />
                 <span className='text-4xl hover:cursor-pointer'><HiOutlinePhotograph className='text-blue-400' /></span>
               </label>
