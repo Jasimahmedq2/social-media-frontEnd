@@ -8,6 +8,7 @@ import { format } from 'timeago.js';
 import { Link } from 'react-router-dom';
 import DeletePostModal from '../modal/deletePostModal';
 import UpdatePostModal from '../modal/UpdatePostModal';
+import Comments from './Comments';
 
 const PostDetails = ({ post, userData, user, refetch }) => {
   const [deletePostModal, setDeletePostModal] = useState(null)
@@ -29,6 +30,7 @@ const PostDetails = ({ post, userData, user, refetch }) => {
     setIsLike(!isLike)
     refetch()
   }
+
   return (
     <div>
       <div className='pb-6'>
@@ -36,11 +38,11 @@ const PostDetails = ({ post, userData, user, refetch }) => {
           <div className="">
             <div className="flex items-center space-x-2 p-2 relative rounded-lg">
               <Link to={`/profile/${userInfo?._id}`}>
-              <label className="btn  btn-circle avatar">
-                <div className="w-10 rounded-full">
-                  <img src={userInfo?.img} alt="user img"/>
-                </div>
-              </label>
+                <label className="btn  btn-circle avatar">
+                  <div className="w-10 rounded-full">
+                    <img src={userInfo?.img} alt="user img" />
+                  </div>
+                </label>
               </Link>
               <div>
                 <h3 className='text-sm font-bold'>{userInfo?.username}</h3>
@@ -78,17 +80,18 @@ const PostDetails = ({ post, userData, user, refetch }) => {
               <img style={{ maxHeight: '25rem', width: '100%' }} src={post?.img} alt="" />
             </div>
 
-            <div className='flex justify-end items-center px-4 py-2 space-x-4'>
+            <div className='relative px-4 py-2 space-x-4 '>
               <div className='flex'>
-                <p>
+                <h2 className='flex space-x-4 bg-base-300 px-6 rounded hover:cursor-pointer'>
                   <AiFillHeart
                     onClick={handleLikeDislike}
                     className='sm:text-4xl text-2xl hover:cursor-pointer text-red-300' />
-                </p>
+                  <span className='text-xl font-serif'>{liked}</span>
 
-                <span>{liked}</span>
+                </h2>
+
               </div>
-              <h4 className='flex '><AiOutlineComment className='sm:text-4xl text-2xl ' /> <span>10</span></h4>
+              <Comments post={post} />
             </div>
           </div>
         </div>

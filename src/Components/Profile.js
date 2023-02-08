@@ -14,7 +14,7 @@ const Profile = () => {
  return (
     <div className='space-y-12'>
      <CoverPicture currentUser={currentUser}/>
-     <ProfileState />
+     <ProfileState currentUser={currentUser}/>
      <div className='flex px-4'>
       <PostPhoto currentUser={currentUser} />
       <ProfilePost currentUser={currentUser}/>
