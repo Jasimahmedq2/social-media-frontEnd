@@ -1,11 +1,12 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useReducer } from 'react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
 const UpdatePostModal = ({ updatePostModal, setUpdatePostModal, refetch, user }) => {
   const [description, setDescription] = useState(updatePostModal?.description)
+
 
 
   const { register, formState: { errors }, handleSubmit, reset } = useForm();
@@ -18,7 +19,7 @@ const UpdatePostModal = ({ updatePostModal, setUpdatePostModal, refetch, user })
         userId: user._id,
         description: data?.description
       })
-      console.log("response", response)
+
       setUpdatePostModal(null)
 
       if (response.status === 200) {
@@ -32,11 +33,8 @@ const UpdatePostModal = ({ updatePostModal, setUpdatePostModal, refetch, user })
           draggable: true,
           progress: undefined,
         })
+        refetch()
       }
-
-
-
-      refetch()
 
     } catch (error) {
       console.log(error)

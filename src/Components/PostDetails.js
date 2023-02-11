@@ -12,6 +12,7 @@ import Comments from './Comments';
 
 const PostDetails = ({ post, userData, user, refetch }) => {
   const [deletePostModal, setDeletePostModal] = useState(null)
+  const [updatePostModal, setUpdatePostModal] = useState(null)
   const [liked, setLiked] = useState(post?.like?.length)
   const [isLike, setIsLike] = useState(false)
   const userInfo = userData?.length > 0 && userData?.find(user => user?._id === post?.userId)
@@ -63,7 +64,12 @@ const PostDetails = ({ post, userData, user, refetch }) => {
                       </label>
 
 
-                      <div className='flex items-center  space-x-2 hover:cursor-pointer hover:bg-base-300 rounded'><AiFillEdit className='sm:text-4xl text-blue-400' /> <span>edit</span></div>
+                      <label
+                        onClick={() => setUpdatePostModal(post)}
+                        htmlFor="update-post-modal"
+                        className='flex items-c
+                      enter  space-x-2 hover:cursor-pointer hover:bg-base-300 rounded'><AiFillEdit className='sm:text-4xl text-blue-400' /> <span>edit</span>
+                      </label>
                     </div>
                   </div>
                 </div>
@@ -102,6 +108,15 @@ const PostDetails = ({ post, userData, user, refetch }) => {
           setDeletePostModal={setDeletePostModal}
           user={user}
           refetch={refetch}
+        />
+      }
+
+      {
+        updatePostModal && <UpdatePostModal
+          updatePostModal={updatePostModal}
+          setUpdatePostModal={setUpdatePostModal}
+          refetch={refetch}
+          user={user}
         />
       }
     </div>

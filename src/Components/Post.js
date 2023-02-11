@@ -13,7 +13,7 @@ import PostDetails from './PostDetails';
 const Post = () => {
   const { user } = useContext(AuthContext)
   const [userData] = useFriendsData(user?._id)
-  const {data, refetch, isLoading, error} = useTimeLineData(user?._id)
+  const {allPost, refetch, isLoading, error} = useTimeLineData(user?._id)
 
   if (error) {
     console.log("error", error)
@@ -25,7 +25,7 @@ const Post = () => {
     <div>
 
       {
-        data?.length > 0 && data.map(post => <PostDetails
+        allPost?.length > 0 && allPost.map(post => <PostDetails
           key={post?._id}
           post={post}
           userData={userData}

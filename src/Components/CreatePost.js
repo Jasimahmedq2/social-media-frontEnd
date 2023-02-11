@@ -10,19 +10,18 @@ import { useState } from 'react';
 import { ColorRing } from 'react-loader-spinner';
 import useTimeLineData from '../Hooks/useTimeLineData';
 import { Link } from 'react-router-dom';
+import axios, { all } from 'axios';
 
 
 const CreatePost = () => {
   const [Loading, setLoading] = useState(false)
   const [preview, setPreview] = useState(null)
   const { user } = useContext(AuthContext)
-  const { refetch } = useTimeLineData(user?._id)
+  const { allPost, setAllPost, refetch } = useTimeLineData(user?._id)
   const { register, handleSubmit, reset } = useForm();
 
 
   const onsubmit = (data) => {
-    console.log("data image", data
-    )
     setLoading(true)
     const privateUrl = '44c26384eae4023f6064cf342eee9294'
     const formData = new FormData()
@@ -34,23 +33,21 @@ const CreatePost = () => {
     })
       .then(res => res.json())
       .then(result => {
-        console.log("result", result)
         const postInfo = {
           userId: user?._id,
           description: data?.description || "",
           img: result?.data?.url || ""
         }
 
-        fetch('https://own-social.onrender.com/api/post/', {
-          method: 'post',
-          headers: {
-            "content-type": "application/json"
-          },
-          body: JSON.stringify(postInfo)
+
+        axios.post('https://own-social.onrender.com/api/post/', postInfo).then(response => {
+          setAllPost([...allPost, response.data])
+          console.log(allPost, "console all data")
         })
-          .then(res => res.json())
-        refetch()
+
         setLoading(false)
+        refetch()
+
         toast.success(`hey  ${user?.username} your post created successfully`, {
           position: "top-center",
           autoClose: 5000,

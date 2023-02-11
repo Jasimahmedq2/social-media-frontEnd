@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useContext } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { AiFillEdit, AiOutlineComment, AiOutlineHeart, AiTwotoneDelete } from 'react-icons/ai';
+import { AiFillEdit, AiFillHeart, AiOutlineComment, AiOutlineHeart, AiTwotoneDelete } from 'react-icons/ai';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { format } from 'timeago.js';
 import { AuthContext } from '../context/AuthContext';
@@ -10,6 +10,7 @@ import useTimeLineData from '../Hooks/useTimeLineData';
 import useUserPost from '../Hooks/useUserPost';
 import DeletePostModal from '../modal/deletePostModal';
 import UpdatePostModal from '../modal/UpdatePostModal';
+import Comments from './Comments';
 
 const ProfilePost = ({ currentUser }) => {
   const { user } = useContext(AuthContext)
@@ -75,10 +76,19 @@ const ProfilePost = ({ currentUser }) => {
                     <img style={{ maxHeight: '25rem', width: '100%' }} src={img} alt="" />
                   </div>
 
-                  <div className='flex justify-end items-center px-4 py-2 space-x-4'>
-                    <h4 className='flex '><AiOutlineHeart className='sm:text-4xl text-2xl' /> <span>40</span></h4>
-                    <h4 className='flex '><AiOutlineComment className='sm:text-4xl text-2xl' /> <span>10</span></h4>
-                  </div>
+                  <div className='relative px-4 py-2 space-x-4 '>
+              <div className='flex'>
+                <h2 className='flex space-x-4 bg-base-300 px-6 rounded hover:cursor-pointer'>
+                  <AiFillHeart
+                 
+                    className='sm:text-4xl text-2xl hover:cursor-pointer text-red-300' />
+                  <span className='text-xl font-serif'>0</span>
+
+                </h2>
+
+              </div>
+              <Comments post={userPost}/>
+            </div>
                 </div>
               </div>
             </div>
