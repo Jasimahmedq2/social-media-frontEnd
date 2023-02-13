@@ -13,7 +13,7 @@ const Suggest = () => {
     const { data } = await axios.get(`https://own-social.onrender.com/api/user/currentUser/${user?._id}`)
     setSuggested(data)
   }
-  
+
   const defaultSuggest = suggested.filter(suggest => suggest.city !== "" || suggest.from !== "")
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const Suggest = () => {
               <div className="flex items-center space-x-4 py-2 px-4 rounded-lg">
                 <label className="btn  btn-circle avatar">
                   <div className="w-10 rounded-full">
-                    <img src={suggest?.coverPicture} alt="suggested img" />
+                    <img src={suggest?.coverPicture || 'https://i.pinimg.com/originals/ff/a0/9a/ffa09aec412db3f54deadf1b3781de2a.png'} alt="suggested img" />
                   </div>
                 </label>
                 <h4 className='text-lg font-bold'>{suggest?.username}</h4>

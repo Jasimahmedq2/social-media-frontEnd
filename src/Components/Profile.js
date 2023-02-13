@@ -16,8 +16,8 @@ const Profile = () => {
     <div className='space-y-12'>
       <CoverPicture currentUser={currentUser} />
       <ProfileState currentUser={currentUser} />
-      <div className='flex px-4 w-1/2'>
-        <div>
+      <div className='flex px-4 '>
+        <div className='w-1/2 space-y-12'>
           <PostPhoto currentUser={currentUser} />
           <ProfileFriend currentUser={currentUser} />
         </div>

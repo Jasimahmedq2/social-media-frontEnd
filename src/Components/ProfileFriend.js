@@ -35,7 +35,7 @@ const ProfileFriend = ({ currentUser }) => {
               <div>
                 <div className="avatar">
                   <div className="w-32 rounded">
-                    <img src={mutual?.img} alt="post img" />
+                    <img src={mutual?.img || 'https://i.pinimg.com/originals/ff/a0/9a/ffa09aec412db3f54deadf1b3781de2a.png'} alt="post img" />
                   </div>
                 </div>
                 <div>

@@ -16,7 +16,6 @@ const Comments = ({ post }) => {
   const { register, handleSubmit, reset } = useForm();
 
 
-console.log("comments", comments)
   const onsubmit = async (data) => {
     const response = await axios.post(`http://localhost:9000/api/comment/`, {
       text: data.text,

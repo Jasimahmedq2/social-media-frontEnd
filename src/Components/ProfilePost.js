@@ -34,7 +34,7 @@ const ProfilePost = ({ currentUser }) => {
                     <div className="flex items-center space-x-2 p-2 relative rounded-lg">
                       <label className="btn  btn-circle avatar">
                         <div className="w-10 rounded-full">
-                          <img src="https://placeimg.com/80/80/people" />
+                          <img src={currentUser?.profilePicture || 'https://i.pinimg.com/originals/ff/a0/9a/ffa09aec412db3f54deadf1b3781de2a.png'} />
                         </div>
                       </label>
                       <div>
@@ -77,18 +77,18 @@ const ProfilePost = ({ currentUser }) => {
                   </div>
 
                   <div className='relative px-4 py-2 space-x-4 '>
-              <div className='flex'>
-                <h2 className='flex space-x-4 bg-base-300 px-6 rounded hover:cursor-pointer'>
-                  <AiFillHeart
-                 
-                    className='sm:text-4xl text-2xl hover:cursor-pointer text-red-300' />
-                  <span className='text-xl font-serif'>0</span>
+                    <div className='flex'>
+                      <h2 className='flex space-x-4 bg-base-300 px-6 rounded hover:cursor-pointer'>
+                        <AiFillHeart
 
-                </h2>
+                          className='sm:text-4xl text-2xl hover:cursor-pointer text-red-300' />
+                        <span className='text-xl font-serif'>0</span>
 
-              </div>
-              <Comments post={userPost}/>
-            </div>
+                      </h2>
+
+                    </div>
+                    <Comments post={userPost} />
+                  </div>
                 </div>
               </div>
             </div>

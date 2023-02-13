@@ -41,7 +41,7 @@ const PostDetails = ({ post, userData, user, refetch }) => {
               <Link to={`/profile/${userInfo?._id}`}>
                 <label className="btn  btn-circle avatar">
                   <div className="w-10 rounded-full">
-                    <img src={userInfo?.img} alt="user img" />
+                    <img src={userInfo?.img || 'https://i.pinimg.com/originals/ff/a0/9a/ffa09aec412db3f54deadf1b3781de2a.png'} alt="user img" />
                   </div>
                 </label>
               </Link>
