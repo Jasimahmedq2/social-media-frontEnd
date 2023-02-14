@@ -12,16 +12,22 @@ const Friends = () => {
       {
         userData?.length > 0 && userData.map(userInfo => {
           return (
-            <Link to={`profile/${userInfo?._id}`} key={userInfo._id}>
-              <div className="flex items-center space-x-4 py-2 px-4 rounded-lg">
-                <label className="btn  btn-circle avatar">
-                  <div className="w-10 rounded-full">
-                    <img src={userInfo?.img || 'https://i.pinimg.com/originals/ff/a0/9a/ffa09aec412db3f54deadf1b3781de2a.png'} />
-                  </div>
-                </label>
-                <h4 className='text-lg font-bold'>{userInfo?.username}</h4>
-              </div>
-            </Link>
+
+            <>
+              {
+                user?._id !== userInfo._id &&   <Link to={`profile/${userInfo?._id}`} key={userInfo._id}>
+                <div className="flex items-center space-x-4 py-2 px-4 rounded-lg">
+                  <label className="btn  btn-circle avatar">
+                    <div className="w-10 rounded-full">
+                      <img src={userInfo?.img || 'https://i.pinimg.com/originals/ff/a0/9a/ffa09aec412db3f54deadf1b3781de2a.png'} />
+                    </div>
+                  </label>
+                  <h4 className='text-lg font-bold'>{userInfo?.username}</h4>
+                </div>
+              </Link>            
+              }
+            </>
+
           )
         })
       }

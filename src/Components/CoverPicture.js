@@ -54,6 +54,7 @@ const CoverPicture = ({ currentUser }) => {
       <div className='w-1/2 mx-auto space-y-4'>
 
         <div className='flex justify-between items-center'>
+          <div class="ml-12 font-medium text-lg">{currentUser?.username}</div>
           {
             currentUser._id !== user._id && (
               <h4 onClick={handleFollowUnfollow} className='flex items-center bg-blue-500 text-white font-bold rounded border border-white p-1 hover:cursor-pointer'>{isFollowed ? "unFollow" : "follow"}<RiUserFollowFill /></h4>

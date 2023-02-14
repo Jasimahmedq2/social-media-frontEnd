@@ -2,12 +2,19 @@ import React from 'react';
 import { BsSearch } from 'react-icons/bs'
 import { AiOutlineMessage } from 'react-icons/ai'
 import { IoMdNotificationsOutline } from 'react-icons/io'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 
 const Navbar = () => {
-  const {user} = useContext(AuthContext)
+  const { user } = useContext(AuthContext)
+  const navigate = useNavigate()
+
+  const handleSigOUt = () => {
+    localStorage.removeItem("user")
+    navigate('/login')
+  }
+
   return (
     <div className='drop-shadow-lg sticky top-0 z-10'>
       <div className="navbar bg-base-100">
@@ -38,16 +45,15 @@ const Navbar = () => {
 
 
             <div className="dropdown dropdown-bottom dropdown-end">
-            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-              <div className="w-10 rounded-full">
-                <img src="https://placeimg.com/80/80/people" />
-              </div>
-            </label>
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                <div className="w-10 rounded-full">
+                  <img src={user?.profilePicture} alt="user" />
+                </div>
+              </label>
               <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-300 rounded-box lg:w-52 z-10 space-y-2">
                 <li><Link to='/login'>Log In</Link></li>
                 <li><Link to={`/profile/${user?._id}`}>profile</Link></li>
-
-                
+                <li className='hover:cursor-pointer pl-4' onClick={handleSigOUt}>Log out</li>
               </ul>
             </div>
 

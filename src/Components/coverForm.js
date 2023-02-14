@@ -41,15 +41,17 @@ const CoverForm = ({ currentUser, user }) => {
   }
   return (
     <div>
-      <form onSubmit={handleSubmit(onsubmit)}>
-        <input
-          className='background-image text-sm font-bold text-white bg-black  absolute top-5 left-4 '
-          {...register('image', { required: true, onChange: (e) => handlePreviewImage(e) })}
-          type="file" id="" />
-        <button type='submit' className={`btn btn-sm btn-primary absolute right-2 top-2 ${hiddenBtn ? "block" : "hidden"}`}>change save</button>
-      </form>
+      {
+        currentUser?._id === user?._id && <form onSubmit={handleSubmit(onsubmit)}>
+          <input
+            className='background-image text-sm font-bold text-white bg-black  absolute top-5 left-4 '
+            {...register('image', { required: true, onChange: (e) => handlePreviewImage(e) })}
+            type="file" id="" />
+          <button type='submit' className={`btn btn-sm btn-primary absolute right-2 top-2 ${hiddenBtn ? "block" : "hidden"}`}>change save</button>
+        </form>
+      }
 
-      <div className="bg-cover bg-center h-64 w-full" style={{ backgroundImage: `url(${previewImage})` }}>
+      <div className="bg-cover bg-center h-64 w-full" style={{ backgroundImage: `url(${previewImage || 'https://media.sproutsocial.com/uploads/2018/04/Facebook-Cover-Photo-Size.png'})` }}>
       </div>
 
     </div>

@@ -50,19 +50,22 @@ const ProfilePicture = ({ currentUser, user }) => {
           <div class="w-56 h-52 rounded-full overflow-hidden">
             <img src={previewImage || 'https://i.pinimg.com/originals/ff/a0/9a/ffa09aec412db3f54deadf1b3781de2a.png'} alt="profile" />
           </div>
-          <div class="ml-12 font-medium text-lg">{currentUser?.username}</div>
         </div>
 
-        <form onSubmit={handleSubmit(onsubmit)}>
+        {
+          currentUser?._id === user?._id && <form onSubmit={handleSubmit(onsubmit)}>
 
-          <label className=" rounded-md cursor-pointer text-white absolute -top-2 left-0   z-20">
-            <input type="file"
-              {...register('image', { required: true, onChange: (e) => { handlePreviewImage(e) } })}
-              className="hidden" />
-            <span><AiFillFolderAdd className='text-6xl text-secondary' /></span>
-          </label>
-          <button type='submit' className={`btn btn-sm btn-primary absolute right-2 top-2 ${hiddenBtn ? "block" : "hidden"}`}>change save</button>
-        </form>
+            <label className=" rounded-md cursor-pointer text-white absolute -top-2 left-0   z-20">
+              <input type="file"
+                {...register('image', { required: true, onChange: (e) => { handlePreviewImage(e) } })}
+                className="hidden" />
+              <span><AiFillFolderAdd className='text-6xl text-secondary' /></span>
+            </label>
+            <button type='submit' className={`btn btn-sm btn-primary absolute right-2 top-2 ${hiddenBtn ? "block" : "hidden"}`}>change save</button>
+          </form>
+        }
+
+
       </div>
     </div>
   );

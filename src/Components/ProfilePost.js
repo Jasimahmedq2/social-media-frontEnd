@@ -100,7 +100,7 @@ const ProfilePost = ({ currentUser }) => {
           deletePostModal={deletePostModal}
           setDeletePostModal={setDeletePostModal}
           user={user}
-          refetch={refetch}
+         
         />
       }
       {

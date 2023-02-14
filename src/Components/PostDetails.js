@@ -107,7 +107,6 @@ const PostDetails = ({ post, userData, user, refetch }) => {
           deletePostModal={deletePostModal}
           setDeletePostModal={setDeletePostModal}
           user={user}
-          refetch={refetch}
         />
       }
 

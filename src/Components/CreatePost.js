@@ -41,12 +41,10 @@ const CreatePost = () => {
 
 
         axios.post('https://own-social.onrender.com/api/post/', postInfo).then(response => {
-          setAllPost([...allPost, response.data])
-          console.log(allPost, "console all data")
+          console.log("console all data")
+          refetch()
         })
-
         setLoading(false)
-        refetch()
 
         toast.success(`hey  ${user?.username} your post created successfully`, {
           position: "top-center",
