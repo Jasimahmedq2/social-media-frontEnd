@@ -5,7 +5,7 @@ import { AuthContext } from '../context/AuthContext';
 const ProfileState = ({currentUser}) => {
   const [likeData, setLikeData] = useState([])
   const loadAllPostLike = async () => {
-    const { data } = await axios.get(`http://localhost:9000/api/post/allLikes?userId=${currentUser?._id}`)
+    const { data } = await axios.get(`https://own-social.onrender.com/api/post/allLikes?userId=${currentUser?._id}`)
     setLikeData(data)
   }
 

@@ -15,7 +15,7 @@ const UpdatePostModal = ({ updatePostModal, setUpdatePostModal, refetch, user })
 
     try {
 
-      const response = await axios.put(`http://localhost:9000/api/post/${updatePostModal?._id}`, {
+      const response = await axios.put(`https://own-social.onrender.com/api/post/${updatePostModal?._id}`, {
         userId: user._id,
         description: data?.description
       })

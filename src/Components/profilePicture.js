@@ -28,7 +28,7 @@ const ProfilePicture = ({ currentUser, user }) => {
     }).then(res => res.json())
       .then(result => {
         const profilePicture = result.data.url
-        fetch(`http://localhost:9000/api/user/profile/${user._id}`, {
+        fetch(`https://own-social.onrender.com/api/user/profile/${user._id}`, {
           method: 'PUT',
           headers: {
             "content-type": "application/json"

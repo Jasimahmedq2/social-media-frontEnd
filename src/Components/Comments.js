@@ -17,7 +17,7 @@ const Comments = ({ post }) => {
 
 
   const onsubmit = async (data) => {
-    const response = await axios.post(`http://localhost:9000/api/comment/`, {
+    const response = await axios.post(`https://own-social.onrender.com/api/comment/`, {
       text: data.text,
       userId: user?._id,
       postId: selectPost?._id
@@ -37,7 +37,7 @@ const Comments = ({ post }) => {
 
 
   const handlePostComment = async (post) => {
-    const { data } = await axios.get(`http://localhost:9000/api/comment/${post?._id}`)
+    const { data } = await axios.get(`https://own-social.onrender.com/api/comment/${post?._id}`)
     setComments(data)
     setSelectPost(post)
     setShowComment(!showComment)

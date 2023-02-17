@@ -17,12 +17,12 @@ const CoverPicture = ({ currentUser }) => {
   const handleFollowUnfollow = async () => {
     try {
       if (isFollowed) {
-        await axios.put(`http://localhost:9000/api/user/${currentUser?._id}/unfollowed`, { userId: user._id });
+        await axios.put(`https://own-social.onrender.com/api/user/${currentUser?._id}/unfollowed`, { userId: user._id });
         dispatch({ type: "UNFOLLOW", payload: currentUser._id })
 
 
       } else {
-        await axios.put(`http://localhost:9000/api/user/${currentUser?._id}/following`, { userId: user?._id });
+        await axios.put(`https://own-social.onrender.com/api/user/${currentUser?._id}/following`, { userId: user?._id });
 
         dispatch({ type: "FOLLOW", payload: currentUser._id })
       }

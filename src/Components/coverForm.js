@@ -27,7 +27,7 @@ const CoverForm = ({ currentUser, user }) => {
       .then(result => {
         const coverPicture = result.data.url
         console.log(coverPicture)
-        fetch(`http://localhost:9000/api/user/cover/${user._id}`, {
+        fetch(`https://own-social.onrender.com/api/user/cover/${user._id}`, {
           method: 'PUT',
           headers: {
             "content-type": "application/json"

@@ -9,7 +9,7 @@ const ProfileFriend = ({ currentUser }) => {
   console.log("mutuals", mutuals)
 
   const LoadMutualFriends = async () => {
-    const { data } = await axios.get(`http://localhost:9000/api/user/mutualfriends/${user._id}/${currentUser._id}`)
+    const { data } = await axios.get(`https://own-social.onrender.com/api/user/mutualfriends/${user._id}/${currentUser._id}`)
     setMutuals(data)
   }
 
