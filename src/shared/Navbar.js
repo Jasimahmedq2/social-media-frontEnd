@@ -5,6 +5,7 @@ import { IoMdNotificationsOutline } from 'react-icons/io'
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
+import LeftBar from '../Components/LeftBar';
 
 const Navbar = () => {
   const { user } = useContext(AuthContext)
@@ -54,12 +55,16 @@ const Navbar = () => {
                 <li><Link to='/login'>Log In</Link></li>
                 <li><Link to={`/profile/${user?._id}`}>profile</Link></li>
                 <li className='hover:cursor-pointer pl-4' onClick={handleSigOUt}>Log out</li>
+                <li><Link to='/leftbar'>leftBar</Link></li>
+                <li><Link to='/rightbar'>rightBar</Link></li>
+
               </ul>
             </div>
 
           </div>
         </div>
       </div>
+
     </div>
   );
 };

@@ -14,6 +14,8 @@ import { AuthContext } from './context/AuthContext';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import LeftBar from './Components/LeftBar';
+import RightBar from './Components/RightBar';
 
 function App() {
 
@@ -29,6 +31,14 @@ function App() {
     {
       path: "/login",
       element: <Login />
+    },
+    {
+      path: "/leftbar",
+      element: <LeftBar />
+    },
+    {
+      path: "/rightbar",
+      element: <RightBar />
     },
     {
       path: "/profile/:id",
